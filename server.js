@@ -19,7 +19,6 @@ var sessionMiddleware=expressSession({
 
 });
 app.use(sessionMiddleware);
-//associat views with express
 app.set('view engine','ejs');
 routes(app);
 
