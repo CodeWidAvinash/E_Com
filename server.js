@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 //to convert req body to JSON
 app.use(express.json());
 
-var sessionMiddleware=expressSession({
+/*var sessionMiddleware=expressSession({
     secret:'cart',
     saveUninitialized:true,
     cookie:{maxAge: oneDay},
@@ -22,7 +22,9 @@ app.use(sessionMiddleware);
 app.set('view engine','ejs');
 routes(app);
 
-
+*/
 app.listen(9000,()=>{
     console.log(' server is listening on port 9000');
 });  
+
+

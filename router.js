@@ -1,15 +1,28 @@
+var userControllers = require('./controllers/userControllers');
+var productControllers = require('./controllers/productControllers');
 
-exports.login=(req,res)=>{
-    let data=req.body;
-    console.log(data);
-    if(data.email==="avinashkumar5299@gmail.com" && data.password==="aman")
-     res.send('welcome '+data.email+"password "+data.password);
-     else
-     res.send('please enter username and password');
-};
-exports.register=async(req,res)=>{
-    let results=[];
-    
-    results=await dal.register(req);
-    res.send("login sucessfull"); 
-};
+
+module.exports = function (app) {
+
+// users
+
+    app.route('/api/users')
+       .get(userControllers.getAll)
+       .post(userControllers.insert)
+       .put(userControllers.update);
+    app.route('/api/users/:user_id')
+       .get(userControllers.getById)
+       .delete(userControllers.remove);
+
+// product 
+       app.route('/api/products')
+       .get(productControllers.getAll)
+       .post(productControllers.insert)
+       .put(productControllers.update);
+    app.route('/api/products/:id')
+       .get(productControllers.getById)
+       .delete(productControllers.remove);
+
+}
+
+
