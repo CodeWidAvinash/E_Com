@@ -8,7 +8,6 @@ const oneDay= 1000 * 60 * 60 * 24;
 const app=express();
 
 app.use(express.urlencoded({extended:true}));
-//to convert req body to JSON
 app.use(express.json());
 
 /*var sessionMiddleware=expressSession({
