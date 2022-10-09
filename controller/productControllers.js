@@ -1,4 +1,5 @@
 var dal= require('../models/productDal');
+
   exports.getAll=async (req,res)=>{
           let results=[];
              results=await dal.getAll();
@@ -12,11 +13,8 @@ var dal= require('../models/productDal');
               results=await dal.getById(req.params.id);
               res.send(results);
           };
-
-
-
 //inserting    
-   exports.InsertProduct=async(req,res)=>{
+   exports.insert=async(req,res)=>{
            let results=[];
                 results=await dal.insert(req);
                 res.send(results); 

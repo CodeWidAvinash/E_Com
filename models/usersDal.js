@@ -1,39 +1,39 @@
 // var session = require('express-session');
 const sql = require('./db');
 
-exports.getAll=function(){
-    return new Promise (resolve=>{
-           let command="select * from users";
-           sql.query(command,(err,rows,fields)=>{
-               if(!err){
-                  resolve(rows);
-              }
-               else{
-                   resolve(err);
-               }
-  })
-});
+exports.getAll = function () {
+    return new Promise(resolve => {
+        let command = "select * from users";
+        sql.query(command, (err, rows, fields) => {
+            if (!err) {
+                resolve(rows);
+            }
+            else {
+                resolve(err);
+            }
+        })
+    });
 };
- 
- 
- exports.getById=function(id){
-     return new Promise(resolve=>{
-          let command="select * from users where userid="+id;
-          sql.query(command,(err, rows, fields)=>{
-              resolve(rows);
-              if(err){
+
+
+exports.getById = function (id) {
+    return new Promise(resolve => {
+        let command = "select * from users where userid=" + id;
+        sql.query(command, (err, rows, fields) => {
+            resolve(rows);
+            if (err) {
                 console.log(err);
             }
-             
-          })
-      }) 
-  };
 
-  exports.InsertUser = function (req) {
+        })
+    })
+};
+
+exports.InsertUser = function (req) {
     return new Promise(resolve => {
-        const {  loginname, password } = req.body;
+        const { loginname, password } = req.body;
 
-        sql.query("insert into users set ?", { loginname, password}, (err, rows, fields) => {
+        sql.query("insert into users set ?", { loginname, password }, (err, rows, fields) => {
             resolve(rows);
         })
 

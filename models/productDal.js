@@ -18,7 +18,7 @@ exports.getById = function (id) {
         let command = "SELECT * FROM  products WHERE productid=" + id;
         sql.query(command, (err, rows, fields) => {
             resolve(rows);
-            if(err){
+            if (err) {
                 console.log(err)
             }
 
@@ -27,11 +27,11 @@ exports.getById = function (id) {
 };
 
 
-exports.InsertProduct = function (req) {
+exports.insert = function (req) {
     return new Promise(resolve => {
-        const { productid, title, unitprice,available,supplierid,unitinstock } = req.body;
+        const { productid, title, unitprice, available, supplierid, unitinstock } = req.body;
 
-        sql.query("insert into products ", { productid, title, unitprice,available,supplierid,unitinstock }, (err, rows, fields) => {
+        sql.query("insert into products ", { productid, title, unitprice, available, supplierid, unitinstock }, (err, rows, fields) => {
             resolve(rows);
         })
 

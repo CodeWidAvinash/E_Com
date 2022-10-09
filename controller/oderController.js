@@ -1,10 +1,10 @@
 
-var dal= require('../models/ordersDal');
+var dal = require('../models/ordersDal');
 
 
-exports.InsertOrders=async(req,res)=>{
-    let result=[];
-    result=await dal.InsertOrders(req);
+exports.InsertOrders = async (req, res) => {
+    let result = [];
+    result = await dal.InsertOrders(req);
     res.send(result);
 
 }
@@ -15,9 +15,9 @@ exports.RemoveOrders = async (req, res) => {
     res.send(result);
 };
 
-exports.Orders=async(req,res)=>{
-    let result=[];
-    result=await dal.Orders(req);
+exports.Orders = async (req, res) => {
+    let result = [];
+    result = await dal.Orders(req);
     res.send(result);
 }
 

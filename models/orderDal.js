@@ -1,32 +1,32 @@
 
-const sql=require('./db');
+const sql = require('./db');
 
 
 //get 
-  exports.getAll=function(){
-          return new Promise (resolve=>{
-                 let command="select * from orders";
-                 sql.query(command,(err,rows,fields)=>{
-                     if(!err){
-                        resolve(rows);
-                    }
-                     else{
-                         resolve(err);
-                     }
+exports.getAll = function () {
+    return new Promise(resolve => {
+        let command = "select * from orders";
+        sql.query(command, (err, rows, fields) => {
+            if (!err) {
+                resolve(rows);
+            }
+            else {
+                resolve(err);
+            }
         })
     });
 };
 //data by  id
-  exports.getById=function(order_id){
-          return new Promise (resolve=>{
-                 let command="select * from orders where order_id="+order_id ;
-                 sql.query(command,(err,rows,fields)=>{
-                     if(!err){
-                        resolve(rows);
-                     }
-                     else{
-                         resolve(err);
-                     }
+exports.getById = function (order_id) {
+    return new Promise(resolve => {
+        let command = "select * from orders where order_id=" + order_id;
+        sql.query(command, (err, rows, fields) => {
+            if (!err) {
+                resolve(rows);
+            }
+            else {
+                resolve(err);
+            }
         })
     });
 };
@@ -34,12 +34,12 @@ const sql=require('./db');
 //insert data into DB
 exports.InsertOrders = function (req) {
     return new Promise(resolve => {
-        const { orderid,orderdate, orderStatus, customerid } = req.body;
-        sql.query("insert into orders set ? ", { orderid,orderdate, orderStatus, customerid}, (err, rows, fields) => {
+        const { orderid, orderdate, orderStatus, customerid } = req.body;
+        sql.query("insert into orders set ? ", { orderid, orderdate, orderStatus, customerid }, (err, rows, fields) => {
             resolve(rows);
-           if(err){
-            console.log(err)
-           }
+            if (err) {
+                console.log(err)
+            }
         })
     })
 }
