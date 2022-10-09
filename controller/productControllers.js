@@ -5,14 +5,18 @@ var dal= require('../models/productDal');
              res.send(results);
           };
 
+
 //data get by id
-  exports.getById=async function(req,res){
+  exports.getById=async (req,res)=>{
           let results=[];
               results=await dal.getById(req.params.id);
               res.send(results);
           };
+
+
+
 //inserting    
-   exports.insert=async(req,res)=>{
+   exports.InsertProduct=async(req,res)=>{
            let results=[];
                 results=await dal.insert(req);
                 res.send(results); 

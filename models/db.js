@@ -17,4 +17,4 @@ con.connect((err)=>{
         console.log(err);
     }
 });
-module
+module.exports=con;

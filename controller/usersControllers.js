@@ -10,13 +10,13 @@ var dal= require('../models/usersDal');
 //get data by id
   exports.getById=async function(req,res){
           let results=[];
-              results=await dal.getById(req.params.user_id);
+              results=await dal.getById(req.params.id);
               res.send(results);
           };   
   // insert        
    exports.insert=async(req,res)=>{
            let results=[];
-                results=await dal.insert(req);
+                results=await dal.InsertUser(req);
                 res.send(results); 
            };
 //update

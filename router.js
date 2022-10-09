@@ -10,7 +10,7 @@ module.exports = function (app) {
        .get(usersControllers.getAll)
        .post(usersControllers.insert)
        .put(usersControllers.update);
-    app.route('/api/users/:user_id')
+    app.route('/api/users/id')
        .get(usersControllers.getById)
        .delete(usersControllers.remove);
 
