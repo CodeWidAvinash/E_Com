@@ -1,6 +1,8 @@
 var usersControllers = require('./controller/usersControllers');
 var productControllers = require('./controller/productControllers');
 var customerControllers= require('./controller/customerController');
+var orderControllers=require('./controller/oderController');
+
 
 module.exports = function (app) {
 
@@ -31,6 +33,14 @@ module.exports = function (app) {
     app.route('/api/products/id')
        .get(productControllers.getById)
        .delete(productControllers.remove);
+
+       app.route('/api/orders')
+       .get(orderControllers.getAll)
+       .post(orderControllers.insert)
+       .put(orderControllers.update);
+    app.route('/api/orders/id')
+       .get(orderControllers.getById)
+       .delete(orderControllers.remove);
 
 }
 

@@ -1,34 +1,33 @@
-
-var dal = require('../models/ordersDal');
-
-
-exports.InsertOrders = async (req, res) => {
-    let result = [];
-    result = await dal.InsertOrders(req);
-    res.send(result);
-
-}
-
-exports.RemoveOrders = async (req, res) => {
-    let result = [];
-    result = await dal.RemoveOrders(req.params.id)
-    res.send(result);
+var dal = require('../models/orderDal');
+//get all 
+exports.getAll = async (req, res) => {
+    let results = [];
+    results = await dal.getAll();
+    res.send(results);
 };
 
-exports.Orders = async (req, res) => {
-    let result = [];
-    result = await dal.Orders(req);
-    res.send(result);
-}
-
-exports.UpdateOrders = async (req, res) => {
-    let result = [];
-    result = await dal.UpdateOrders(req)
-    res.send(result);
+//get by id
+exports.getById = async function (req, res) {
+    let results = [];
+    results = await dal.getById(req.params.id);
+    res.send(results);
+};
+//insert
+exports.insert = async (req, res) => {
+    let results = [];
+    results = await dal.insert(req);
+    res.send(results);
+};
+//update
+exports.update = async (req, res) => {
+    let results = [];
+    results = await dal.update(req);
+    res.send(results);
+};
+//delete
+exports.remove = async (req, res) => {
+    let results = [];
+    results = await dal.remove(req.params.id);
+    res.send(results);
 };
 
-exports.OrdersById = async function (req, res) {
-    let result = [];
-    result = await dal.OrdersById(req.params.id);
-    res.send(result);
-};

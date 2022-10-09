@@ -32,7 +32,7 @@ exports.getById = function (order_id) {
 };
 
 //insert data into DB
-exports.InsertOrders = function (req) {
+exports.insert = function (req) {
     return new Promise(resolve => {
         const { orderid, orderdate, orderStatus, customerid } = req.body;
         sql.query("insert into orders set ? ", { orderid, orderdate, orderStatus, customerid }, (err, rows, fields) => {
@@ -44,7 +44,7 @@ exports.InsertOrders = function (req) {
     })
 }
 //update 
-exports.UpdateOrders = function (req) {
+exports.update= function (req) {
     return new Promise(resolve => {
         const { id } = req.params;
         const data = req.body;
@@ -56,7 +56,7 @@ exports.UpdateOrders = function (req) {
 }
 
 //delete
-exports.RemoveOrders = function (id) {
+exports.remove= function (id) {
     return new Promise(resolve => {
         let command = "DELETE FROM orders Where id=" + id;
         sql.query(command, (err, rows, fields) => {
