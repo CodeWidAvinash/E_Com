@@ -5,7 +5,7 @@ const conUri={
     host:'localhost',
     user:'root',
     password:'Aman@123',
-    database:'E_Commerce'
+    database:'customer'
 }
 
 const con=mysql.createConnection(conUri);

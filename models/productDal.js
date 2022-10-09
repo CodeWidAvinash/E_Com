@@ -1,5 +1,5 @@
 
-var session = require('express-session');
+//var session = require('express-session');
 const sql = require('./db');
 
 
@@ -28,9 +28,9 @@ exports.ProductById = function (id) {
 
 exports.InsertProduct = function (req) {
     return new Promise(resolve => {
-        const { categoryId, productName, productPrice } = req.body;
+        const { productid, title, unitprice,available,supplierid,unitinstock } = req.body;
 
-        sql.query("insert into products ", { categoryId, productName, productPrice }, (err, rows, fields) => {
+        sql.query("insert into products ", { productid, title, unitprice,available,supplierid,unitinstock }, (err, rows, fields) => {
             resolve(rows);
         })
 

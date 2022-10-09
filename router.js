@@ -1,5 +1,5 @@
-var userControllers = require('./controllers/userControllers');
-var productControllers = require('./controllers/productControllers');
+var usersControllers = require('./controller/usersControllers')
+var productControllers = require('./controller/productControllers');
 
 
 module.exports = function (app) {
@@ -7,12 +7,12 @@ module.exports = function (app) {
 // users
 
     app.route('/api/users')
-       .get(userControllers.getAll)
-       .post(userControllers.insert)
-       .put(userControllers.update);
+       .get(usersControllers.getAll)
+       .post(usersControllers.insert)
+       .put(usersControllers.update);
     app.route('/api/users/:user_id')
-       .get(userControllers.getById)
-       .delete(userControllers.remove);
+       .get(usersControllers.getById)
+       .delete(usersControllers.remove);
 
 // product 
        app.route('/api/products')

@@ -3,7 +3,7 @@ const sql=require('../models/db');
 exports.login=(req, res)=>{
     let user=req.body;
     let message="";
-    if(user.email==="avinashkumar521999@gmail.com" && user.password==="aman"){
+    if(user.email==="aman@gmail.com" && user.password==="aman"){
         message="Welcome "+ user.email;
     }
     else{
