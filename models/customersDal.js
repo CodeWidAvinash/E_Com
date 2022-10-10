@@ -34,9 +34,9 @@ exports.getById = function (id) {
 //insert 
 exports.insert = function (req) {
     return new Promise(resolve => {
-        const { customerid, firstname, lastname, email, contactnumber, address,userid } = req.body;
+        const { firstname, lastname, email, contactnumber, address,userid } = req.body;
 
-        sql.query("insert into customers ", { customerid, firstname, lastname, email, contactnumber, address,userid}, (err, rows, fields) => {
+        sql.query("insert into  set ? ", {firstname, lastname, email, contactnumber, address,userid}, (err, rows, fields) => {
             resolve(rows);
         })
 
@@ -47,20 +47,18 @@ exports.insert = function (req) {
 //data update 
 exports.update = function (req) {
     return new Promise(resolve => {
-        let command = 'UPDATE customers SET userid = ? WHERE customerid = ?';
-        sql.query(command, [req.body.id, req.body.userid], (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
+        const { id } = req.params;
+        const data = req.body;
+        sql.query("update customers set ? where customerid=?", [data, id], (err, rows) => {
+            resolve(rows);
+
         })
-    });
-};
+
+    })
+}
 
 //data remove 
-exports.remove = function (customer_id) {
+exports.remove = function (id) {
     return new Promise(resolve => {
         let command = "DELETE from customers where customerid=" + id;
         sql.query(command, (err, rows, fields) => {

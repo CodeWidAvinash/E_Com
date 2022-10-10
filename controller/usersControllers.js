@@ -22,13 +22,13 @@ exports.insert = async (req, res) => {
 //update
 exports.update = async (req, res) => {
         let results = [];
-        results = await dal.update(req);
+        results = await dal.update(req, req.params.id);
         res.send(results);
 };
 //delet
 exports.remove = async (req, res) => {
         let results = [];
-        results = await dal.remove(req.params.user_id);
+        results = await dal.remove(req.params.id);
         res.send(results);
 };
 

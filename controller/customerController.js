@@ -21,7 +21,7 @@ exports.insert = async (req, res) => {
 //update
 exports.update = async (req, res) => {
     let results = [];
-    results = await dal.update(req);
+    results = await dal.update(req, req.params.id);
     res.send(results);
 };
 //deleting 

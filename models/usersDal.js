@@ -14,8 +14,6 @@ exports.getAll = function () {
         })
     });
 };
-
-
 exports.getById = function (id) {
     return new Promise(resolve => {
         let command = "select * from users where userid=" + id;
@@ -28,8 +26,7 @@ exports.getById = function (id) {
         })
     })
 };
-
-exports.InsertUser = function (req) {
+exports.insert = function (req) {
     return new Promise(resolve => {
         const { loginname, password } = req.body;
 
@@ -39,20 +36,20 @@ exports.InsertUser = function (req) {
 
     })
 }
-exports.RemoveUser = function (id) {
+exports.remove = function (id) {
     return new Promise(resolve => {
-        let command = "DELETE FROM users Where id=" + id;
+        let command = "DELETE FROM users Where userid=" + id;
         sql.query(command, (err, rows, fields) => {
             resolve(rows);
-        })
-    })
-}
+        });
+    });
+};
 
-exports.UpdateUser = function (req) {
+exports.update = function (req) {
     return new Promise(resolve => {
         const { id } = req.params;
         const data = req.body;
-        sql.query("update users set ? where id=?", [data, id], (err, rows) => {
+        sql.query("update users set ? where userid=?", [data, id], (err, rows) => {
             resolve(rows);
 
         })
