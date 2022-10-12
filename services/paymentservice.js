@@ -1,6 +1,6 @@
 import Orders from "../model/ordermodel.js";
 import Payments from "../model/paymentmodel.js";
-import sql from "./db/db.js";
+import sql from "./db/db.js"
 
 export default class PaymentService {
   //constructor Dependency Injection

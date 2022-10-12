@@ -32,3 +32,8 @@ export default class Customer {
       console.log(`Created At= ${this.created_at}`);
     }
   }
+
+
+
+
+  

@@ -1,5 +1,4 @@
-
-const mysql = require('mysql');
+import mysql from 'my-sql';
 
 const conUri = {
     host: 'localhost',
@@ -17,4 +16,5 @@ con.connect((err) => {
         console.log(err);
     }
 });
-module.exports = con;
+//module.exports = con;
+export default con;
