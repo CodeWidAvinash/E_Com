@@ -1,33 +1,25 @@
-var dal = require('../models/customersDal');
-//get all data 
-exports.getAll = async (req, res) => {
-    let results = [];
-    results = await dal.getAll();
-    res.send(results);
-};
+//Controller
+export default class CustomerController {
+  //constructor Dependency Injection
+  constructor(mgr) {
+    this.repoManager = mgr;
+  }
 
-//get by id
-exports.getById = async function (req, res) {
-    let results = [];
-    results = await dal.getById(req.params.id);
-    res.send(results);
-};
-//insert  
-exports.insert = async (req, res) => {
-    let results = [];
-    results = await dal.insert(req);
-    res.send(results);
-};
-//update
-exports.update = async (req, res) => {
-    let results = [];
-    results = await dal.update(req, req.params.id);
-    res.send(results);
-};
-//deleting 
-exports.remove = async (req, res) => {
-    let results = [];
-    results = await dal.remove(req.params.id);
-    res.send(results);
-};
+  get = async (req, res) => {
+    console.log("Fetching All Customers");
+    let allCustomers = await this.repoManager.getAll();
+    res.send(allCustomers.data);
+  };
 
+  getById = async (req, res) => {
+    console.log("Fetching All Customers By Id");
+    let customer = await this.repoManager.getById(req.params.id);
+    res.send(customer.data);
+  };
+
+  update = async (req, res) => {
+    console.log("updating a customer");
+    let result = await this.repoManager.update(req.params.id, req.body);
+    res.send(result.data);
+  };
+}

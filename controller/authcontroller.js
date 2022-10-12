@@ -1,37 +1,102 @@
-const sql=require('../models/db');
+import jwt from "jsonwebtoken";
+import config from "../config.js";
 
-exports.login=(req, res)=>{
-    let user=req.body;
-    let message="";
-    if(user.email==="aman@gmail.com" && user.password==="aman"){
-        message="Welcome "+ user.email;
+
+export default class AuthController {
+  //constructor Dependency Injection
+  constructor(mgr) {
+    this.repoManager = mgr;
+  }
+
+  //   Customers Authentication
+  customerLogin = async (req, res) => {
+    console.log("Customer Login");
+    let result = await this.repoManager.customerLogin(req);
+    res.send(result);
+  };
+
+  customerRegister = async (req, res) => {
+    console.log("Customer Login Test");
+    let result = await this.repoManager.customerRegister(req); //{}
+    res.send(result);
+  };
+
+  updateCustomerPassword = async (req, res) => {
+    console.log("Update Customer Password");
+    let result = await this.repoManager.updateCustomerPassword(req);
+    res.send(result.data);
+  };
+  // Sellers Authentication
+
+  sellerLogin = async (req, res) => {
+    console.log("seller Login");
+    let result = await this.repoManager.sellerLogin(req);
+    res.send(result.data);
+  };
+
+  sellerRegister = async (req, res) => {
+    console.log("seller Login");
+    let result = await this.repoManager.sellerRegister(req);
+    res.send(result.data);
+  };
+
+  updateSellerPassword = async (req, res) => {
+    console.log("Update Seller Password");
+    let result = await this.repoManager.updateSellerPassword(req);
+    res.send(result.data);
+  };
+
+  //   Vendor Authentication
+
+  vendorLogin = async (req, res) => {
+    console.log("vendor Login");
+    let result = await this.repoManager.vendorLogin(req);
+    res.send(result.data);
+  };
+
+  vendorRegister = async (req, res) => {
+    console.log("vendor Login");
+    let result = await this.repoManager.vendorRegister(req);
+    res.send(result.data);
+  };
+
+  updateVendorPassword = async (req, res) => {
+    console.log("Update Vendor Password");
+    let result = await this.repoManager.updateVendorPassword(req);
+    res.send(result.data);
+  };
+
+  //   Staff Authentication
+
+  staffLogin = async (req, res) => {
+    console.log("staff Login");
+    let result = await this.repoManager.staffLogin(req);
+    res.send(result.data);
+  };
+
+  staffRegister = async (req, res) => {
+    console.log("staff Login");
+    let result = await this.repoManager.staffRegister(req);
+    res.send(result.data);
+  };
+
+  updateStaffPassword = async (req, res) => {
+    console.log("Update Staff Password");
+    let result = await this.repoManager.updateStaffPassword(req);
+    res.send(result.data);
+  };
+
+  // JWT VERIFY FUNCTION
+  verifyjwttoken = (req, res, next) => {
+    const token = req.headers["authorization"].split(' ')[1];
+    if (!token) return res.status(401).json("Unauthorize user");
+    try {
+      const decoded = jwt.verify(token, config.jwtSecretKey);
+      req.user = decoded;
+      console.log("Validation Successful");
+      next();
+    } catch (e) {
+      res.status(400).json({message: e.message});
     }
-    else{
-        message="Invalid User";
-    }
-    res.send(message);
-};
-
-exports.register= async (req, res)=>{
-    const userPayload = req.body
-    
-    // add validation
-    if(!userPayload.username || !userPayload.password){
-        res.status(400).json({success: false, message: 'Username or password is missing!'})
-        return
-    }
-
-    //save in db
-    let command="INSERT INTO registration() values(" + userPayload.fname+"','"+ userPayload.email ;
-    const saveRes = await new Promise((resolve, reject) => {
-        sql.query(command,(err, rows, fields)=>{
-            resolve(rows)
-        })
-    })
-
-    res.status(200).json({success: true, data: saveRes, message: 'Successfully registered!'})
-
-
-    //return response
-    // res.send("new user registrations...")
+  };
 }

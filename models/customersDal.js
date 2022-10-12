@@ -1,73 +1,34 @@
-
-const sql = require('./db');
-
-
-//get all data 
-exports.getAll = function () {
-    return new Promise(resolve => {
-        let command = "select * from customers";
-        sql.query(command, (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
-        })
-    });
-};
-//data get from table based on perticuler id
-exports.getById = function (id) {
-    return new Promise(resolve => {
-        let command = "select * from customers where customerid=" + id;
-        sql.query(command, (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
-        })
-    });
-};
-
-//insert 
-exports.insert = function (req) {
-    return new Promise(resolve => {
-        const { firstname, lastname, email, contactnumber, address,userid } = req.body;
-
-        sql.query("insert into  set ? ", {firstname, lastname, email, contactnumber, address,userid}, (err, rows, fields) => {
-            resolve(rows);
-        })
-
-    })
-}
-
-
-//data update 
-exports.update = function (req) {
-    return new Promise(resolve => {
-        const { id } = req.params;
-        const data = req.body;
-        sql.query("update customers set ? where customerid=?", [data, id], (err, rows) => {
-            resolve(rows);
-
-        })
-
-    })
-}
-
-//data remove 
-exports.remove = function (id) {
-    return new Promise(resolve => {
-        let command = "DELETE from customers where customerid=" + id;
-        sql.query(command, (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
-        })
-    });
-};
+export default class Customer {
+    //Parameterized constructor
+    constructor(
+      id,
+      user_id,
+      firstname,
+      lastname,
+      contact_no,
+      location,
+      created_at,
+      modified_at
+    ) {
+      this.id = id;
+      this.user_id = user_id;
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.contact_no = contact_no;
+      this.location = location;
+      this.created_at = created_at;
+      this.modified_at = modified_at;
+  
+      this.table_name = "customers";
+    }
+  
+    display() {
+      console.log(`Id= ${this.id}`);
+      console.log(`User Id= ${this.user_id}`);
+      console.log(`First Name= ${this.firstname}`);
+      console.log(`Last Name= ${this.lastname}`);
+      console.log(`Mobile= ${this.contact_no}`);
+      console.log(`Location= ${this.location}`);
+      console.log(`Created At= ${this.created_at}`);
+    }
+  }

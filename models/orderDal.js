@@ -1,66 +1,20 @@
-
-const sql = require('./db');
-
-
-//get 
-exports.getAll = function () {
-    return new Promise(resolve => {
-        let command = "select * from orders";
-        sql.query(command, (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
-        })
-    });
-};
-//data by  id
-exports.getById = function (order_id) {
-    return new Promise(resolve => {
-        let command = "select * from orders where order_id=" + order_id;
-        sql.query(command, (err, rows, fields) => {
-            if (!err) {
-                resolve(rows);
-            }
-            else {
-                resolve(err);
-            }
-        })
-    });
-};
-
-//insert data into DB
-exports.insert = function (req) {
-    return new Promise(resolve => {
-        const { orderid, orderdate, orderStatus, customerid } = req.body;
-        sql.query("insert into orders set ? ", { orderid, orderdate, orderStatus, customerid }, (err, rows, fields) => {
-            resolve(rows);
-            if (err) {
-                console.log(err)
-            }
-        })
-    })
-}
-//update 
-exports.update= function (req) {
-    return new Promise(resolve => {
-        const { id } = req.params;
-        const data = req.body;
-        sql.query("update orders set ? where id=?", [data, id], (err, rows) => {
-            resolve(rows);
-
-        })
-    })
-}
-
-//delete
-exports.remove= function (id) {
-    return new Promise(resolve => {
-        let command = "DELETE FROM orders Where id=" + id;
-        sql.query(command, (err, rows, fields) => {
-            resolve(rows);
-        })
-    })
-}
+export default class Orders {
+    //Parameterized constructor
+    constructor(id, status, customer_id, paid, created_at, modified_at) {
+      this.id = id;
+      this.status = status;
+      this.customer_id = customer_id;
+      this.paid = paid;
+      this.created_at = created_at;
+      this.modified_at = modified_at;
+  
+      this.table_name = "orders";
+    }
+  
+    display() {
+      console.log(`Id= ${this.id}`);
+      console.log(`Status= ${this.status}`);
+      console.log(`Customer Id= ${this.customer_id}`);
+      console.log(`Created At= ${this.created_at}`);
+    }
+  }
