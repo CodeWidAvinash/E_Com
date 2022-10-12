@@ -1,4 +1,4 @@
-import AccountController from "../controllers/accountcontroller.js";
+import AccountController from "../controller/accountController.js";
 import AccountsService from "../services/accountservice.js";
 
 export default function (app) {

@@ -1,4 +1,4 @@
-import DashboardController from "../controllers/dashboardControllers/dashboardcontroller.js";
+import DashboardController from "../controller/dashboardControllers/dashboardcontroller.js";
 import DashboardService from "../services/dashboardservice.js";
 
 export default function (app) {

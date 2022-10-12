@@ -1,5 +1,5 @@
-import CategoryController from "../controllers/categorycontroller.js";
-import CategoryService from "../services/categoryservice.js";
+import CategoryController from "../controller/categorycontroller.js";
+import CategoryService from "../services/categoryservices.js";
 
 export default function (app) {
   let mgr = new CategoryService();

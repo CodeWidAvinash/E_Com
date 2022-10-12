@@ -1,4 +1,4 @@
-import FeedbackController from "../controllers/feedbackcontroller.js";
+import FeedbackController from "../controller/feedbackcontroller.js";
 import FeedbacksService from "../services/feedbackservice.js";
 
 export default function (app) {

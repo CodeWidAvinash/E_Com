@@ -1,5 +1,5 @@
-import OrdersController from "../controllers/orderscontroller.js";
-import OrdersService from "../services/ordersservice.js";
+import OrdersController from "../controller/orderscontoller.js";
+import OrdersService from "../services/orderdataservice.js";
 
 export default function (app) {
   let mgr = new OrdersService();

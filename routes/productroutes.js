@@ -1,5 +1,5 @@
 import ProductController from "../controller/productcontroller.js";
-import ProductService from "../services/productservice.js";
+import ProductService from "../services/paymentservice.js";
 
 export default function (app) {
   let mgr = new ProductService();
